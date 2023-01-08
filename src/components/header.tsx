@@ -3,7 +3,10 @@ import { Show } from "solid-js";
 
 interface HeaderProps {
   isLoading: boolean;
-  user: string | undefined;
+  user: {
+    name: string;
+    image: string;
+  } | undefined;
 }
 export default function Header(props: HeaderProps) {
 
@@ -77,10 +80,10 @@ export default function Header(props: HeaderProps) {
         <img
           onClick={() => signOut()}
           class="user-profile"
-          src="https://assets.codepen.io/1222317/internal/avatars/users/default.png?format=auto&height=80&version=1531733027&width=80"
+          src={props.user?.image}
           alt=""
           />
-        <div class="user-name">{props.user}</div>
+        <div class="user-name">{props.user?.name}</div>
           </Show>
       </div>
     </div>

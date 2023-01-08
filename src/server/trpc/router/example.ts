@@ -10,7 +10,10 @@ export default router({
     .mutation(({ input }) => {
       return Math.floor(Math.random() * 100) / input.num;
     }),
-  secret: protectedProcedure.query(({ ctx }) => {
-    return `${ctx.session.user.name}`;
+  headerData: protectedProcedure.query(({ ctx }) => {
+    return {
+      name: ctx.session.user.name ?? '',
+      image: ctx.session.user.image ?? "https://assets.codepen.io/1222317/internal/avatars/users/default.png?format=auto&height=80&version=1531733027&width=80"
+    };
   }),
 });

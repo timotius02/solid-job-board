@@ -22,7 +22,7 @@ export const routeData = () => {
 
 const Home: VoidComponent = () => {
   const session = useRouteData<typeof routeData>();
-  const res = trpc.secret.useQuery(undefined, {
+  const headerData = trpc.headerData.useQuery(undefined, {
     get enabled() {
       return !!session()?.user;
     },
@@ -30,7 +30,7 @@ const Home: VoidComponent = () => {
 
   return (
    <div class="m-auto flex h-full flex-col overflow-hidden bg-gray-50">
-      <Header isLoading={res.isLoading || session.loading} user={res.data}  />
+      <Header isLoading={headerData.isLoading || session.loading} user={headerData.data}  />
     <div class="w-full flex flex-col scroll-smooth px-8 py-10">
       <SearchMenu />
       <div class="main-container">
